@@ -26,6 +26,7 @@ window.onscroll = (e) => {
 const start = () => {
     addClickInTheMenu();
     addFunctionButtonTop();
+    addClickInTheBody();
 }
 
 
@@ -35,6 +36,11 @@ const addClickInTheMenu = () => {
         item.addEventListener('click', scrollToIdOnClick);        
     });    
 }
+
+const addClickInTheBody = () => {
+    q('body').addEventListener('click', removeClassShowOfTheMenu);
+}
+
 const addFunctionButtonTop = () => {
     q('.button--top').addEventListener('click', handleClickButtonTop);
 }
@@ -50,7 +56,13 @@ const scrollToIdOnClick = (event) => {
     qs('a[href^="#"].nav-link').forEach(item => {
         item.classList.remove('active--menu');
     });
-    event.target.classList.add('active--menu');       
+    event.target.classList.add('active--menu');
+    
+    q('#navbarNavAltMarkup').classList.remove('show');
+}
+
+const removeClassShowOfTheMenu = () => {    
+    q('#navbarNavAltMarkup').classList.remove('show');
 }
 
 const getScrollTopByHref = (element) => {
